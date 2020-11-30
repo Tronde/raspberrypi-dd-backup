@@ -6,6 +6,6 @@
 #
 # ZIP specifies whether or not to use compression. Values are "true|false".
 
-SRC='/dev/sdX'
-DEST='/full/path/to/file.img'
-ZIP='false'
+SRC="/dev/sdX"
+DEST="/full/path/to/file.img"
+ZIP="false"
