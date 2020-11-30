@@ -1,0 +1,11 @@
+# SRC specifies the backup source while DEST specifies the target image file.
+# Source should be the sd card to backup. The target could be a file on your
+# local computer, server, or some kind of NAS.
+#
+# PLEASE: Specify SRC and DEST as full qualified path, e.g. /home/user/pi.img.
+#
+# ZIP specifies whether or not to use compression. Values are "true|false".
+
+SRC='/dev/sdX'
+DEST='/full/path/to/file.img'
+ZIP='false'
