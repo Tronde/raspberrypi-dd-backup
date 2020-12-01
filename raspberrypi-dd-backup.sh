@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Introduction
 # This is a simple script to create an image backup from Raspberry Pi SD card and probably other sd cards as well.
 # 
@@ -15,6 +14,9 @@
 #  1. Copy CONFIG.sample to config
 #  2. Edit config and specify `SRC`, `DEST` and wether or not you like to use compression
 #  3. Optional: Setup cronjob to run `raspberrypi-dd-backup.sh` as `root` to schedule your backup job
+
+# Enable debugging
+# set -x
 
 # VARIABLES
 SCRIPTNAME=`basename ${0}`
@@ -43,11 +45,11 @@ do_dd_backup()
 
 do_dd_backup_w_compression()
 {
-  dd bs=4M if=${SRC} | gzip > ${DEST}
+  dd bs=4M if=${SRC} | gzip > ${DEST}.gz
 }
 
 # Main
-while getopts .hST. OPTION
+while getopts .hS:T:. OPTION
 do
   case $OPTION in
     h)
@@ -75,8 +77,8 @@ if [[ -z $SRC || -z $DEST ]]; then
   echo "Please specify SRC and/or DEST in CONFIG or via Options -S and -T."
 fi
 
-if [[ ! -z $SRC || ! -z $DEST ]] && [[ -z $ZIP ]]; then
-  do_dd_backup
-else
+if [[ ! -z $SRC || ! -z $DEST ]] && [[ "$ZIP" == true || "$ZIP" == TRUE ]]; then
   do_dd_backup_w_compression
+else
+  do_dd_backup
 fi
