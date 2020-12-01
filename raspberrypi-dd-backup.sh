@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Introduction
 # This is a simple script to create an image backup from Raspberry Pi SD card and probably other sd cards as well.
@@ -75,7 +75,7 @@ if [[ -z $SRC || -z $DEST ]]; then
   echo "Please specify SRC and/or DEST in CONFIG or via Options -S and -T."
 fi
 
-if [[ ! -z $SRC || ! -z $DEST && -z $ZIP ]]; then
+if [[ ! -z $SRC || ! -z $DEST ]] && [[ -z $ZIP ]]; then
   do_dd_backup
 else
   do_dd_backup_w_compression
